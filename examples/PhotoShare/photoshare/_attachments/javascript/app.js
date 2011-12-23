@@ -1,5 +1,4 @@
 DEFAULT_REPLICA_HOST = "http://localhost:5984/";
-SHARE_DB_NAME = "photodemo-share-cloud";
 
 var path = document.location.pathname.split('/')
     , dbname = path[1]

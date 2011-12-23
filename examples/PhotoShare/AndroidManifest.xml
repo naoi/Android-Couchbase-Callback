@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<manifest package="com.docomoinnovations.couchbase.photoshare"
-    android:versionCode="8"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.docomoinnovations.couchbase.photoshare"
+    android:versionCode="7"
     android:versionName="1.1"
-    android:windowSoftInputMode="adjustPan" xmlns:android="http://schemas.android.com/apk/res/android">
+    android:windowSoftInputMode="adjustPan" >
 
     <supports-screens
         android:anyDensity="true"
@@ -33,12 +34,13 @@
 
     <application
         android:debuggable="true"
+        android:hardwareAccelerated="true"
         android:icon="@drawable/icon"
-        android:label="@string/app_name" android:hardwareAccelerated="true">
+        android:label="@string/app_name" >
         <activity
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name"
-            android:name="com.docomoinnovations.couchbase.photoshare.PhotoShare" >
+            android:name=".PhotoShare" >
             <intent-filter >
                 <action android:name="android.intent.action.MAIN" />
 
@@ -52,6 +54,6 @@
             android:name="com.couchbase.android.CouchbaseService" />
     </application>
 
-    <uses-sdk android:minSdkVersion="8" />
+    <uses-sdk android:minSdkVersion="7" />
 
 </manifest>
