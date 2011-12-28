@@ -1,319 +1,293 @@
 <!--
 /**
- * Copyright (c) 2011 DOCOMO Innovations, Inc.
- *
- * DOCOMO Innovations, Inc. (DOCOMO Innovations) licenses
- * this software under the Apache License, Version 2.0 (Apache License 2.0)
- * for the software disclosed herein. For terms and conditions under
- * the Apache License 2.0, please refer to http://www.apache.org/licenses/.
- *
- * DOCOMO Innovations may not be held liable for failing to maintain or
- * support the software, and DOCOMO Innovations is not responsible for
- * any damage or loss experienced from using the software.
- *
- * Please contact the IT Manager at DOCOMO Innovations for all issues
- * related to the software.
- *
- */
- -->
-<!DOCTYPE HTML>
+* Copyright (c) 2011-2012 DOCOMO Innovations, Inc.
+*
+* DOCOMO Innovations, Inc. (DOCOMO Innovations) licenses
+* this software under the Apache License, Version 2.0 (Apache License 2.0)
+* for the software disclosed herein. For terms and conditions under
+* the Apache License 2.0, please refer to http://www.apache.org/licenses/.
+*
+* DOCOMO Innovations may not be held liable for failing to maintain or
+* support the software, and DOCOMO Innovations is not responsible for
+* any damage or loss experienced from using the software.
+*
+* Please contact the IT Manager at DOCOMO Innovations for all issues
+* related to the software.
+*
+*/
+--> <!DOCTYPE HTML>
 <html>
-<head>
-<title>DOCOMO Innovations - Photo Share App</title>
+  <head>
+    <title>DOCOMO Innovations - Photo Share App</title>
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> -->
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" href="css/style.css" />
-  
     <script type="text/javascript">
-	var myScroll;
-	function loaded() {
-	    myScroll = new iScroll('wrapper');
-	}
-	document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
-	document.addEventListener('DOMContentLoaded', loaded, false);
-	
+      var myScroll;
+      function loaded(){
+       myScroll = new iScroll('wrapper');
+      }
+      
+      document.addEventListener('touchmove', function(e){
+       e.preventDefault();
+      }, false);
+      document.addEventListener('DOMContentLoaded', loaded, false);
     </script>
-    
-    <style type="text/css" media="all"> 
-	#wrapper {
-	    height:100%;
-	    overflow:auto;
-	}
-	#scroller {
-	  /*
-	    width:101%;
-	    height:100%;
-	    float:left;
-	    padding:0;
-	  */
-	    
-	float:left;
-	width:870px;
-	height:130px;
-	padding:0;
-	}
+    <!-- Photo Scroller-->
+    <style type="text/css" media="all">
+      #wrapper {
+        height: 100%;
+        overflow: auto;
+      }
+      
+      #scroller {
+        float: left;
+        width: 870px;
+        height: 130px;
+        padding: 0;
+      }
     </style>
-</head>
-
-
-<!-- 
-    Notes:
-    - Set the body class to "user_color_" + orange, red, blue, green to change the frame color
-    - To turn on overlay mode add the "overlay-mode" class to the body.
-    - I have also disabled scrolling. To re-enable scroll, remove "overflow: hidden" from line 26 of the CSS file.
- -->
-<body class="overlay-mode---">
-<div id="page-wrapper" data-role="page">
-
-<!-- Outer Frame -->
-<div class="outer-frame" >
-
-<!-- Camera Icon -->
-<a href="javascript: void(0);" id="camera_button"></a>
-
-
-<!-- Col1 : Main Area and Thm Area-->
-    <div id="col1" class="columns">
-
-
-    <!-- Col 1 : Stage Panel: Main Photo Viewing Panel -->
-	    <div id="stage-panel">
-	        
-	        <!-- 
-			    Notes:
-			    - All the photos use the same DOM structure.
-			    - There are additional classes that'll set the size and styles
-			    - For the full res photos, we will need to set either horizontal or vertical
-			    - If possible, please add the style "-webkit-transform: rotate(5deg);" to the ul element and randomly sets the rotation value between -5deg ~ 5deg.
-			 -->
-	        <!-- SAMPLE: Horizontal Photo -->
-	           <ul class="photo-template photo-large-horizontal" id="stage-photo">
-	               <li class="overlay"></li>
-	               <li class="photo"></li>
-	               <li class="border"></li>
-	           </ul>
-	        
-            <!-- SAMPLE: Vertical Photo -->
-               <!-- <ul class="photo-template photo-large-vertical"  style="display: none;">
-                   <li class="overlay"></li>
-                   <li class="photo"></li>
-                   <li class="border"></li>
-               </ul> -->
-
-	        
-	        
-	        
-	    </div><!-- //stage-panel -->
-
-
-    <!-- Col 1 :  Thm Panel : Thumbnail Viewing Panel -->
-	    <div id="thm-panel">
-		
-			<div class="thm-panel-container"> <!-- The outer container of the thm panel for scrolling -->
-
-	        <div id="wrapper">
-		    <div id="scroller">
-			    <div id="thm-images-attachpoint" class=""><!-- attach thm images here -->
-
-			            <!-- 
-			                Notes:
-			                - The thumbnail photos use the same DOM structure.
-			                - The "selected" class will set the green glow around the thumbnail
-			                - by adding "friend_color_" + red, blue, orange and green will set the color of the borders
-			             -->
-				     
-			
-			<!-- SAMPLE thumbnail: Default color -->
-		               <ul class="photo-template photo-thumbnail" style="display:none;">
-		                   <li class="overlay"></li>
-		                   <li class="photo"></li>
-		                   <li class="border"></li>
-		               </ul>
-
-                       <!-- SAMPLE thumbnail: Default color, selected-->
-                       <!-- <ul class="photo-template photo-thumbnail selected" >
-                           <li class="overlay"></li>
-                           <li class="photo"></li>
-                           <li class="border"></li>
-                       </ul> -->
-
-                       <!-- SAMPLE thumbnail: Default color, selected-->
-                       <!-- <ul class="photo-template photo-thumbnail friend_color_red" >
-                           <li class="overlay"></li>
-                           <li class="photo"></li>
-                           <li class="border"></li>
-                       </ul> -->
-
-                       <!-- SAMPLE thumbnail: Default color, selected-->
-                       <!-- <ul class="photo-template photo-thumbnail friend_color_blue" >
-                           <li class="overlay"></li>
-                           <li class="photo"></li>
-                           <li class="border"></li>
-                       </ul> -->
-		  
-		           
-			    </div><!-- //#thm-images-attachpoint -->
-	          </div>
-		</div>
-			 </div><!-- //thm-panel-container -->
-
-	    </div><!-- //#thm-panel -->
-
-    </div><!-- //#col1 -->
-
-
- 
- 
- 
-
-<!-- Col2 : User Selection Area -->
-    <div id="col2" class="columns">
-	    
-	        <!-- Col 2 :  Header : Displays time and user profile pic -->
-		        <div class="col2-header">
-		            <div class="date-time-container text-shadow">
-			            <div id="date" class="date-label">
-			                Monday, 09/26/2011
-			            </div>
-			            <div id="time" class="time">
-			                12:34
-			                <label id="time-period" class="date-label">PM</label>
-			            </div>
-			        </div><!-- //date-time-container -->
-		
-			        <div id="user-profile-attachpoint"> <!-- attach user profile image here -->
-
-		                  <!-- SAMPLE thumbnail: Default color, selected-->
-		                       <ul class="photo-template photo-user-profile" >
-		                           <li class="overlay"></li>
-		                           <li id="user-profile-pic" class="photo profile-pic-all"></li>
-		                           <li class="border"></li>
-		                       </ul>
-                       			        
-			        </div><!-- //user-profile-attachpoint -->
-		        </div><!-- //col2-header -->
-
-
-
-	       <!-- Col 2 : Friends List : List of Friends -->
-		        <div id="friend-button-attachpoint" class="col2-body"><!--  attach friends button here -->
-                    <!-- 
-                        Notes:
-                        - by adding "friend_color_" + red, blue, orange and green will set the color of the border and background
-                        - The "Selected" class will set the border to the "friend_color"
-                     -->
-
-                   <!-- Button template : Everyone's photo HIDDEN -->
-		      <a href="#all" id="all" class="friend-button text-shadow friend-color-orange" style="display: none;">
-	                    <div class="friend-button-inner">
-		                  <ul class="photo-template photo-user-profile" >
-	                               <li class="overlay"></li>
-	                               <li class="photo profile-pic-all"></li>
-	                               <li class="border"></li>
-	                           </ul>
-    
-	                           <div class="friend-name-container name">
-	                                <label class="name-label">家族共有写真</label> 
-	                                <span class="photo-count">0 枚の写真</span>
-	                           </div>
-	                         </div>
-	                </a>
-
-                    <!-- Button Template : My Photos (User target will dynamically change) -->
-                        <a href="#myphotos" id="myphotos" class="friend-button text-shadow friend-color-orange selected">
-                              <div class="friend-button-inner">
-                                  <ul class="photo-template photo-user-profile" >
-                                       <li class="overlay"></li>
-                                       <li class="photo profile-pic-all"></li>
-                                       <li class="border"></li>
-                                   </ul>
-        
-                                   <div class="friend-name-container name">
-                                        <label class="name-label">家族共有写真</label>
-                                        <span class="photo-count">0 枚の写真</span>
-                                   </div>
-                               </div>
-                        </a>                 
-
-
-                    <!-- Button template : Grandpas -->
-			            <a href="#grandpa" id="grandpa" class="friend-button text-shadow friend-color-red">
-				              <div class="friend-button-inner">
-				                  <ul class="photo-template photo-user-profile" >
-		                               <li class="overlay"></li>
-		                               <li class="photo profile-pic-grandpa"></li>
-		                               <li class="border"></li>
-		                           </ul>
-		
-		                           <div class="friend-name-container name">
-		                                <label class="name-label">おじいちゃん</label>
-		                                <span class="photo-count">0 枚の写真</span>
-		                           </div>
-			                   </div>
-			            </a>
-
-                    <!-- Button template : Moms -->
-                        <a href="#mom" id="mom" class="friend-button text-shadow friend-color-blue ">
-                              <div class="friend-button-inner">
-                                  <ul class="photo-template photo-user-profile" >
-                                       <li class="overlay"></li>
-                                       <li class="photo profile-pic-mom"></li>
-                                       <li class="border"></li>
-                                   </ul>
-                                   <div class="friend-name-container name">
-                                        <label class="name-label">お母さん</label>
-                                        <span class="photo-count">0 枚の写真</span>
-                                   </div>
-                               </div>
-                        </a>
-
-                   <!-- Button template : Kids -->
-                        <a href="#kid" id="kid" class="friend-button text-shadow friend-color-green">
-                              <div class="friend-button-inner">
-                                  <ul class="photo-template photo-user-profile" >
-                                       <li class="overlay"></li>
-                                       <li class="photo profile-pic-kid"></li>
-                                       <li class="border"></li>
-                                   </ul>
-                                   <div class="friend-name-container name">
-                                        <label class="name-label">息子</label>
-                                        <span class="photo-count">0 枚の写真</span>
-                                   </div>
-                               </div>
-                        </a>                        		        
-		            
-		        </div><!-- //col2-body -->
-
-
-
-    		<!-- Col 2 : Footer : DII Logo and AJAX status icon -->
-		        <div class="col2-footer">
-		            <div class="dii-logo"></div>
-
-
-                    <!-- 
-                        Notes:
-                        - The status indicator can change colors. 
-                        - Use the classes offline, online, loading, error to set the colors
-                     -->
-		            <div id="status-indicator" class="offline online loading error "></div> <!-- Use this ID and change the class to one of the 4 states during your xhr request -->
-		        </div><!-- //col2-footer -->
-
-
-    </div><!-- //#col2 -->
-
-</div> <!-- //Outer Frame -->
-
-</div><!-- #page-wrapper -->
-
-
-<div id="overlay">
-    <div class="drag-instruction-text"></div>    
-</div>
-<script type="application/javascript" src="javascript/iscroll.js"></script>
-<script src="javascript/jquery-1.6.4.min.js"></script>
-<script src="javascript/phonegap-1.2.0.js"></script>
-<script src="javascript/coux.js"></script>
-<script src="javascript/app.js"></script>
-</body>
+  </head>
+  <!--
+  Notes:
+  - Set the body class to "user_color_" + orange, red, blue, green to change the frame color
+  - To turn on overlay mode add the "overlay-mode" class to the body.
+  - I have also disabled scrolling. To re-enable scroll, remove "overflow: hidden" from line 26 of the CSS file.
+  -->
+  <body class="overlay-mode---">
+    <div id="page-wrapper" data-role="page">
+      <!-- Outer Frame -->
+      <div class="outer-frame">
+        <!-- Camera Icon --><a href="javascript: void(0);" id="camera_button"></a>
+        <!-- Col1 : Main Area and Thm Area-->
+        <div id="col1" class="columns">
+          <!-- Col 1 : Stage Panel: Main Photo Viewing Panel -->
+          <div id="stage-panel">
+            <!--
+            Notes:
+            - All the photos use the same DOM structure.
+            - There are additional classes that'll set the size and styles
+            - For the full res photos, we will need to set either horizontal or vertical
+            - If possible, please add the style "-webkit-transform: rotate(5deg);" to the ul element and randomly sets the rotation value between -5deg ~ 5deg.
+            --><!-- SAMPLE: Horizontal Photo -->
+            <ul class="photo-template photo-large-horizontal" id="stage-photo">
+              <li class="overlay">
+              </li>
+              <li class="photo">
+              </li>
+              <li class="border">
+              </li>
+            </ul>
+            <!-- SAMPLE: Vertical Photo --><!-- <ul class="photo-template photo-large-vertical"  style="display: none;">
+            <li class="overlay"></li>
+            <li class="photo"></li>
+            <li class="border"></li>
+            </ul> -->
+          </div>
+          <!-- //stage-panel --><!-- Col 1 :  Thm Panel : Thumbnail Viewing Panel -->
+          <div id="thm-panel">
+            <div class="thm-panel-container">
+              <!-- The outer container of the thm panel for scrolling --><!-- wrapper :  Scroll Wrapper : Thumbnail Panel Scroller Wrapper -->
+              <div id="wrapper">
+                <!-- scroller :  Thm Panel : Thumbnail Panel Scroller -->
+                <div id="scroller">
+                  <div id="thm-images-attachpoint" class="">
+                    <!-- attach thm images here --><!--
+                    Notes:
+                    - The thumbnail photos use the same DOM structure.
+                    - The "selected" class will set the green glow around the thumbnail
+                    - by adding "friend_color_" + red, blue, orange and green will set the color of the borders
+                    --><!-- SAMPLE thumbnail: Default color -->
+                    <ul class="photo-template photo-thumbnail" style="display:none;">
+                      <li class="overlay">
+                      </li>
+                      <li class="photo">
+                      </li>
+                      <li class="border">
+                      </li>
+                    </ul>
+                    <!-- SAMPLE thumbnail: Default color, selected--><!-- <ul class="photo-template photo-thumbnail selected" >
+                    <li class="overlay"></li>
+                    <li class="photo"></li>
+                    <li class="border"></li>
+                    </ul> --><!-- SAMPLE thumbnail: Default color, selected--><!-- <ul class="photo-template photo-thumbnail friend_color_red" >
+                    <li class="overlay"></li>
+                    <li class="photo"></li>
+                    <li class="border"></li>
+                    </ul> --><!-- SAMPLE thumbnail: Default color, selected--><!-- <ul class="photo-template photo-thumbnail friend_color_blue" >
+                    <li class="overlay"></li>
+                    <li class="photo"></li>
+                    <li class="border"></li>
+                    </ul> -->
+                  </div>
+                  <!-- //#thm-images-attachpoint -->
+                </div>
+              </div>
+            </div>
+            <!-- //thm-panel-container -->
+          </div>
+          <!-- //#thm-panel -->
+        </div>
+        <!-- //#col1 --><!-- Col2 : User Selection Area -->
+        <div id="col2" class="columns">
+          <!-- Col 2 :  Header : Displays time and user profile pic -->
+          <div class="col2-header">
+            <div class="date-time-container text-shadow">
+              <div id="date" class="date-label">
+                Monday, 09/26/2011
+              </div>
+              <div id="time" class="time">
+                12:34
+                <label id="time-period" class="date-label">
+                  PM
+                </label>
+              </div>
+            </div>
+            <!-- //date-time-container -->
+            <div id="user-profile-attachpoint">
+              <!-- attach user profile image here --><!-- SAMPLE thumbnail: Default color, selected-->
+              <ul class="photo-template photo-user-profile">
+                <li class="overlay">
+                </li>
+                <li id="user-profile-pic" class="photo profile-pic-all">
+                </li>
+                <li class="border">
+                </li>
+              </ul>
+            </div>
+            <!-- //user-profile-attachpoint -->
+          </div>
+          <!-- //col2-header --><!-- Col 2 : Friends List : List of Friends -->
+          <div id="friend-button-attachpoint" class="col2-body">
+            <!--  attach friends button here --><!--
+            Notes:
+            - by adding "friend_color_" + red, blue, orange and green will set the color of the border and background
+            - The "Selected" class will set the border to the "friend_color"
+            --><!-- Button template : Everyone's photo HIDDEN --><a href="#all" id="all" class="friend-button text-shadow friend-color-orange" style="display: none;">
+              <div class="friend-button-inner">
+                <ul class="photo-template photo-user-profile">
+                  <li class="overlay">
+                  </li>
+                  <li class="photo profile-pic-all">
+                  </li>
+                  <li class="border">
+                  </li>
+                </ul>
+                <div class="friend-name-container name">
+                  <label class="name-label">
+                    家族共有写真
+                  </label>
+                  <span class="photo-count">0 枚の写真</span>
+                </div>
+              </div>
+            </a>
+            <!-- Button Template : My Photos (User target will dynamically change) --><a href="#myphotos" id="myphotos" class="friend-button text-shadow friend-color-orange selected">
+              <div class="friend-button-inner">
+                <ul class="photo-template photo-user-profile">
+                  <li class="overlay">
+                  </li>
+                  <li class="photo profile-pic-all">
+                  </li>
+                  <li class="border">
+                  </li>
+                </ul>
+                <div class="friend-name-container name">
+                  <label class="name-label">
+                    家族共有写真
+                  </label>
+                  <span class="photo-count">0 枚の写真</span>
+                </div>
+              </div>
+            </a>
+            <!-- Button template : Grandpas --><a href="#grandpa" id="grandpa" class="friend-button text-shadow friend-color-red">
+              <div class="friend-button-inner">
+                <ul class="photo-template photo-user-profile">
+                  <li class="overlay">
+                  </li>
+                  <li class="photo profile-pic-grandpa">
+                  </li>
+                  <li class="border">
+                  </li>
+                </ul>
+                <div class="friend-name-container name">
+                  <label class="name-label">
+                    おじいちゃん
+                  </label>
+                  <span class="photo-count">0 枚の写真</span>
+                </div>
+              </div>
+            </a>
+            <!-- Button template : Moms --><a href="#mom" id="mom" class="friend-button text-shadow friend-color-blue ">
+              <div class="friend-button-inner">
+                <ul class="photo-template photo-user-profile">
+                  <li class="overlay">
+                  </li>
+                  <li class="photo profile-pic-mom">
+                  </li>
+                  <li class="border">
+                  </li>
+                </ul>
+                <div class="friend-name-container name">
+                  <label class="name-label">
+                    お母さん
+                  </label>
+                  <span class="photo-count">0 枚の写真</span>
+                </div>
+              </div>
+            </a>
+            <!-- Button template : Kids --><a href="#kid" id="kid" class="friend-button text-shadow friend-color-green">
+              <div class="friend-button-inner">
+                <ul class="photo-template photo-user-profile">
+                  <li class="overlay">
+                  </li>
+                  <li class="photo profile-pic-kid">
+                  </li>
+                  <li class="border">
+                  </li>
+                </ul>
+                <div class="friend-name-container name">
+                  <label class="name-label">
+                    息子
+                  </label>
+                  <span class="photo-count">0 枚の写真</span>
+                </div>
+              </div>
+            </a>
+          </div>
+          <!-- //col2-body -->
+          <!-- Col 2 : Footer : DII Logo and AJAX status icon -->
+          <div class="col2-footer">
+            <div class="dii-logo">
+            </div>
+            <!--
+            Notes:
+            - The status indicator can change colors.
+            - Use the classes offline, online, loading, error to set the colors
+            -->
+            <div id="status-indicator" class="offline online loading error ">
+            </div>
+            <!-- Use this ID and change the class to one of the 4 states during your xhr request -->
+          </div>
+          <!-- //col2-footer -->
+        </div>
+        <!-- //#col2 -->
+      </div>
+      <!-- //Outer Frame -->
+    </div>
+    <!-- #page-wrapper -->
+    <div id="overlay">
+      <div class="drag-instruction-text">
+      </div>
+    </div>
+    <script type="application/javascript" src="javascript/iscroll.js">
+    </script>
+    <script src="javascript/jquery-1.6.4.min.js">
+    </script>
+    <script src="javascript/phonegap-1.2.0.js">
+    </script>
+    <script src="javascript/coux.js">
+    </script>
+    <script src="javascript/app.js">
+    </script>
+  </body>
 </html>
