@@ -169,7 +169,10 @@ $(function(){
   function howManyPhotosFriend(addPhoto){
     coux([dbname, '_design', design, '_view', 'friend-photos', {
       group_level: 1,
-      reduce: true
+      descending: true,
+      reduce: true,
+      startkey: [whoami, {}],
+      endkey: [whoami, lastSeq],
     }], function(err, view){
       var tot = 0;
       view.rows.forEach(function(r){
@@ -695,4 +698,3 @@ var Base64Converter = function(){
           }
   }
 }
-
